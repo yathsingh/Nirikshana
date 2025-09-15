@@ -59,7 +59,8 @@ Originally trained in Google Colab, then downloaded using joblib.
 
 **Backend**
 
-FastAPI enables creation of multiple API endpoints, interacting with an SQLLite database to ensure a simple yet effective prototype design
+FastAPI enables creation of multiple API endpoints, interacting with an SQLLite database to ensure a simple yet effective prototype design.
+seed.py generates mock historic data, while simulate_live inputs data live at intervals to simulate the real pipeline
 
 <br>
 
