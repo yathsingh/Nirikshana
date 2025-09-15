@@ -21,7 +21,7 @@ Prototype Brain: Arduino UNO
 
 *Rough Sketches:*
 
-<p style="display: flex; gap: 20px; justify-content: center;">
+<p style="display: flex; gap: 40px; justify-content: center;">
   <img src="images/hw_rough_sketch.jpeg" alt="Nirikshana hardware sketch" height="300" style="width: auto;" />
   <img src="images/unit_dist_sketch.jpeg" alt="Nirikshana distribution sketch" height="300" style="width: auto;" />
 </p>
@@ -38,7 +38,7 @@ Originally trained in Google Colab, then downloaded using joblib.
 
 *Model performance metrics:*
 
-<p style="display: flex; gap: 20px; justify-content: center;">
+<p style="display: flex; gap: 40px; justify-content: center;">
   <img src="images/rf_cf.png" alt="cf" height="300" style="width: auto;" />
   <img src="images/rf_imp.png" alt="imp" height="300" style="width: auto;" />
 </p>
