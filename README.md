@@ -1,4 +1,8 @@
-**Nirikshana End to End Water Monitoring System (Prototype 1)**
+**Nirikshana End to End Water Monitoring System**
+
+TO RUN, OPEN TERMINAL AND ENTER: 
+1. python simulate_live.py
+2. uvicorn app:app --reload
 
 Nirikshana utilises a robust hardware device to collect and wirelessly transmit water-quality data using numerous sensors (pH, turbidity, tds, water flow). 
 The data is then sent to the backend where it is passed through an ML pipeline to predict water safety, and the finalised data is sent to an interative dashboard 
@@ -21,7 +25,7 @@ Prototype Brain: Arduino UNO
 
 *Rough Sketches:*
 
-<p style="display: flex; gap: 20px; justify-content: center;">
+<p style="display: flex; gap: 40px; justify-content: center;">
   <img src="images/hw_rough_sketch.jpeg" alt="Nirikshana hardware sketch" height="300" style="width: auto;" />
   <img src="images/unit_dist_sketch.jpeg" alt="Nirikshana distribution sketch" height="300" style="width: auto;" />
 </p>
@@ -35,6 +39,13 @@ Currently Used: Random Forest with 'max_depth': None, 'min_samples_split': 2, 'n
 Planned: XGBoost -> Custom deep learning pipeline
 
 Originally trained in Google Colab, then downloaded using joblib.
+
+*Model performance metrics:*
+
+<p style="display: flex; gap: 40px; justify-content: center;">
+  <img src="images/rf_cf.png" alt="cf" height="300" style="width: auto;" />
+  <img src="images/rf_imp.png" alt="imp" height="300" style="width: auto;" />
+</p>
 
 <br>
 
