@@ -70,6 +70,7 @@ FastAPI enables creation of multiple API endpoints, interacting with an SQLLite 
 Utilises HTML, CSS, Javascript, Chart.js to create an interactive viewer experience
 
 <p style="display: flex; gap: 40px; justify-content: center;">
-  <img src="images/niri_dash_1.png" alt="cf" height="300" style="width: auto;" />
-  <img src="images/niri_dash_3.png" alt="imp" height="300" style="width: auto;" />
+  <img src="images/niri_dash_1.png" alt="1" height="300" style="width: auto;" />
+  <img src="images/niri_dash_2.png" alt="2" height="300" style="width: auto;" />
+  <img src="images/niri_dash_3.png" alt="3" height="300" style="width: auto;" />
 </p>
