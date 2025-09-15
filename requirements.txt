@@ -1,8 +1,8 @@
-fastapi
-uvicorn
-jinja2
-pandas
+flask
+sqlalchemy
 scikit-learn
 joblib
-SQLAlchemy=
-python-multipart
+numpy
+pandas
+apscheduler
+python-dotenv
