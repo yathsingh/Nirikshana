@@ -19,7 +19,7 @@
     </header>
 
     <section id="summary-cards">
-        <div class="card" id="total-records">0<br><span>Currently Showing Records</span></div>
+        <div class="card" id="total-records">0<br><span>Currently Shown Records</span></div>
         <div class="card alert-card" id="total-alerts">0<br><span>Alerts</span></div>
         <div class="card" id="river-name">Ganga<br><span>Monitored River</span></div>
     </section>
@@ -27,19 +27,19 @@
     <section id="charts">
         <div class="chart-box">
             <h2>pH Levels</h2>
-            <canvas id="phChart"></canvas>
+            <div class="chart-container"><canvas id="phChart"></canvas></div>
         </div>
         <div class="chart-box">
             <h2>TDS Levels</h2>
-            <canvas id="tdsChart"></canvas>
+            <div class="chart-container"><canvas id="tdsChart"></canvas></div>
         </div>
         <div class="chart-box">
             <h2>Turbidity</h2>
-            <canvas id="turbidityChart"></canvas>
+            <div class="chart-container"><canvas id="turbidityChart"></canvas></div>
         </div>
         <div class="chart-box">
             <h2>Prediction Status</h2>
-            <canvas id="predictionChart"></canvas>
+            <div class="chart-container"><canvas id="predictionChart"></canvas></div>
         </div>
     </section>
 
@@ -75,7 +75,7 @@
             const waterData = await res.json();
 
             document.getElementById("total-records").innerHTML =
-            `${waterData.length}<br><span>Currently Showing Records</span>`;
+            `${waterData.length}<br><span>Currently Shown Records</span>`;
 
             const alertsCount = waterData.filter(d => d.prediction === "unsafe").length;
             document.getElementById("total-alerts").innerHTML =
@@ -91,7 +91,7 @@
                 phChart = new Chart(document.getElementById("phChart"), {
                     type: "line",
                     data: { labels, datasets: [{ label: "pH", data: phValues, borderColor: "#3b82f6", backgroundColor: "transparent" }] },
-                    options: { responsive: true, plugins: { legend: { labels: { color: "#ddd" } } }, scales: { x: { ticks: { color: "#aaa" } }, y: { ticks: { color: "#aaa" } } } }
+                    options: { maintainAspectRatio: false, responsive: true, plugins: { legend: { labels: { color: "#ddd" } } }, scales: { x: { ticks: { color: "#aaa" } }, y: { ticks: { color: "#aaa" } } } }
                 });
             } else {
                 phChart.data.labels = labels;
@@ -103,7 +103,7 @@
                 tdsChart = new Chart(document.getElementById("tdsChart"), {
                     type: "line",
                     data: { labels, datasets: [{ label: "TDS", data: tdsValues, borderColor: "#8b5cf6", backgroundColor: "transparent" }] },
-                    options: { responsive: true, plugins: { legend: { labels: { color: "#ddd" } } }, scales: { x: { ticks: { color: "#aaa" } }, y: { ticks: { color: "#aaa" } } } }
+                    options: { maintainAspectRatio: false, responsive: true, plugins: { legend: { labels: { color: "#ddd" } } }, scales: { x: { ticks: { color: "#aaa" } }, y: { ticks: { color: "#aaa" } } } }
                 });
             } else {
                 tdsChart.data.labels = labels;
@@ -115,7 +115,7 @@
                 turbidityChart = new Chart(document.getElementById("turbidityChart"), {
                     type: "line",
                     data: { labels, datasets: [{ label: "Turbidity", data: turbidityValues, borderColor: "#f97316", backgroundColor: "transparent" }] },
-                    options: { responsive: true, plugins: { legend: { labels: { color: "#ddd" } } }, scales: { x: { ticks: { color: "#aaa" } }, y: { ticks: { color: "#aaa" } } } }
+                    options: { maintainAspectRatio: false, responsive: true, plugins: { legend: { labels: { color: "#ddd" } } }, scales: { x: { ticks: { color: "#aaa" } }, y: { ticks: { color: "#aaa" } } } }
                 });
             } else {
                 turbidityChart.data.labels = labels;
@@ -132,7 +132,7 @@
                         labels: ["Safe", "Unsafe"],
                         datasets: [{ data: [safeCount, unsafeCount], backgroundColor: ["#10b981", "#ef4444"] }]
                     },
-                    options: { plugins: { legend: { labels: { color: "#ddd" } } } }
+                    options: { maintainAspectRatio: false, plugins: { legend: { labels: { color: "#ddd" } } } }
                 });
             } else {
                 predictionChart.data.datasets[0].data = [safeCount, unsafeCount];
