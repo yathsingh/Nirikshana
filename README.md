@@ -39,8 +39,8 @@ Originally trained in Google Colab, then downloaded using joblib.
 *Model performance metrics:*
 
 <p style="display: flex; gap: 20px; justify-content: center;">
-  <img src="images/rf_cf" alt="cf" height="300" style="width: auto;" />
-  <img src="images/rf_imp.jpeg" alt="imp" height="300" style="width: auto;" />
+  <img src="images/rf_cf.png" alt="cf" height="300" style="width: auto;" />
+  <img src="images/rf_imp.png" alt="imp" height="300" style="width: auto;" />
 </p>
 
 <br>
