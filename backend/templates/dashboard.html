@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nirikshana Dashboard</title>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Nirikshana Water Monitoring System</h1>
+        <p class="subtitle">Real-time river water quality monitoring</p>
+    </header>
+
+    <section id="alerts">
+        <div id="alert-box" class="hidden">Warning: Unsafe water detected!</div>
+    </section>
+
+    <section class="charts">
+        <div class="card">
+            <h2>pH Levels</h2>
+            <canvas id="phChart"></canvas>
+        </div>
+        <div class="card">
+            <h2>Turbidity (NTU)</h2>
+            <canvas id="turbidityChart"></canvas>
+        </div>
+        <div class="card">
+            <h2>Safe vs Unsafe</h2>
+            <canvas id="predictionChart"></canvas>
+        </div>
+    </section>
+
+    <section class="table-section">
+        <h2>Recent Readings</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Timestamp</th>
+                    <th>River</th>
+                    <th>Location</th>
+                    <th>pH</th>
+                    <th>TDS (ppm)</th>
+                    <th>Turbidity</th>
+                    <th>Flow Rate</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody id="data-table"></tbody>
+        </table>
+    </section>
+
+    <script>
+        let phChart, turbidityChart, predictionChart;
+
+        async function fetchData() {
+            const res = await fetch("/data");
+            const waterData = await res.json();
+
+            const labels = waterData.map(d => new Date(d.timestamp).toLocaleTimeString());
+            const phValues = waterData.map(d => d.ph);
+            const turbidityValues = waterData.map(d => d.turbidity);
+            const predictions = waterData.map(d => d.prediction);
+
+            if (!phChart) {
+                phChart = new Chart(document.getElementById("phChart"), {
+                    type: "line",
+                    data: {
+                        labels: labels,
+                        datasets: [{ label: "pH", data: phValues, borderColor: "blue", fill: false }]
+                    }
+                });
+            } else {
+                phChart.data.labels = labels;
+                phChart.data.datasets[0].data = phValues;
+                phChart.update();
+            }
+
+            if (!turbidityChart) {
+                turbidityChart = new Chart(document.getElementById("turbidityChart"), {
+                    type: "line",
+                    data: {
+                        labels: labels,
+                        datasets: [{ label: "Turbidity", data: turbidityValues, borderColor: "orange", fill: false }]
+                    }
+                });
+            } else {
+                turbidityChart.data.labels = labels;
+                turbidityChart.data.datasets[0].data = turbidityValues;
+                turbidityChart.update();
+            }
+
+            const safeCount = predictions.filter(p => p === "safe").length;
+            const unsafeCount = predictions.filter(p => p === "unsafe").length;
+
+            if (!predictionChart) {
+                predictionChart = new Chart(document.getElementById("predictionChart"), {
+                    type: "pie",
+                    data: {
+                        labels: ["Safe", "Unsafe"],
+                        datasets: [{ data: [safeCount, unsafeCount], backgroundColor: ["green", "red"] }]
+                    }
+                });
+            } else {
+                predictionChart.data.datasets[0].data = [safeCount, unsafeCount];
+                predictionChart.update();
+            }
+
+            const tableBody = document.getElementById("data-table");
+            tableBody.innerHTML = "";
+            (waterData.slice(-10).reverse()).forEach(d => {
+                const row = `
+                    <tr>
+                        <td>${d.timestamp}</td>
+                        <td>${d.river || ""}</td>
+                        <td>${d.location || ""}</td>
+                        <td>${(d.ph !== null && d.ph !== undefined) ? d.ph.toFixed(2) : ""}</td>
+                        <td>${d.tds ?? ""}</td>
+                        <td>${(d.turbidity !== null && d.turbidity !== undefined) ? d.turbidity.toFixed(1) : ""}</td>
+                        <td>${(d.flow_rate !== null && d.flow_rate !== undefined) ? d.flow_rate.toFixed(1) : ""}</td>
+                        <td class="${d.prediction === 'safe' ? 'safe' : 'unsafe'}">${d.prediction}</td>
+                    </tr>
+                `;
+                tableBody.innerHTML += row;
+            });
+
+            const alertBox = document.getElementById("alert-box");
+            if (predictions.includes("unsafe")) {
+                alertBox.classList.remove("hidden");
+            } else {
+                alertBox.classList.add("hidden");
+            }
+        }
+
+        setInterval(fetchData, 5000);
+        fetchData();
+    </script>
+</body>
+</html>
