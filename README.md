@@ -19,10 +19,13 @@ Sensors: pH, Turbidity, TDS, Water flow
 
 Prototype Brain: Arduino UNO
 
-*Rough Sketch:*
+*Rough Sketches:*
 
-<p align="center">
+<p>
   <img src="images/hw_rough_sketch.png" alt="Nirikshana hardware sketch" height="300" width="auto" />
+</p>
+<p>
+  <img src="images/hw_rough_sketch.png" alt="Nirikshana distribution sketch" height="300" width="auto" />
 </p>
 
 <br>
