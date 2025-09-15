@@ -35,7 +35,7 @@ Prototype Brain: Arduino UNO
 
 <p style="display: flex; gap: 40px; justify-content: center;">
   <img src="images/hw_proto_rough.jpeg" alt="hw proto" height="300" style="width: auto;" />
-  <img src="images/unit_proto_rough_inside.jpeg" alt="hw proto inside" height="300" style="width: auto;" />
+  <img src="images/hw_proto_rough_inside.jpeg" alt="hw proto inside" height="300" style="width: auto;" />
 </p>
 
 <br>
@@ -68,6 +68,6 @@ FastAPI enables creation of multiple API endpoints, interacting with an SQLLite 
 Utilises HTML, CSS, Javascript, Chart.js to create an interactive viewer experience
 
 <p style="display: flex; gap: 40px; justify-content: center;">
-  <img src="images/nf_dash_1.png" alt="cf" height="300" style="width: auto;" />
-  <img src="images/nf_dash_3.png" alt="imp" height="300" style="width: auto;" />
+  <img src="images/niri_dash_1.png" alt="cf" height="300" style="width: auto;" />
+  <img src="images/niri_dash_3.png" alt="imp" height="300" style="width: auto;" />
 </p>
