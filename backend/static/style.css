@@ -6,13 +6,15 @@
 }
 
 body {
-    background: #f4f8fb;
-    color: #222;
+    background: #111827;
+    color: #e5e7eb;
     padding: 20px;
 }
 
 header {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     margin-bottom: 25px;
     background: linear-gradient(90deg, #2563eb, #1d4ed8);
     color: white;
@@ -20,17 +22,27 @@ header {
     border-radius: 10px;
 }
 
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
 header h1 {
-    font-size: 2rem;
+    font-size: 1.8rem;
+}
+
+header .logo {
+    height: 50px;
+    width: 50px;
+    border-radius: 8px;
 }
 
 header .subtitle {
-    font-size: 1.1rem;
-    margin-top: 5px;
+    font-size: 1rem;
     opacity: 0.9;
 }
 
-/* Summary cards */
 #summary-cards {
     display: flex;
     gap: 20px;
@@ -40,29 +52,29 @@ header .subtitle {
 
 .card {
     flex: 1;
-    background: white;
-    padding: 15px;
+    background: #1f2937;
+    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
     text-align: center;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: bold;
+    color: #f9fafb;
 }
 
 .card span {
     display: block;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-weight: normal;
     margin-top: 5px;
-    color: #555;
+    color: #9ca3af;
 }
 
 .alert-card {
-    background: #fee2e2;
-    color: #b91c1c;
+    background: #7f1d1d;
+    color: #fca5a5;
 }
 
-/* Charts */
 #charts {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -71,19 +83,31 @@ header .subtitle {
 }
 
 .chart-box {
-    background: white;
+    background: #1f2937;
     padding: 15px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+    justify-items: center;
 }
 
-/* Alerts */
+.chart-box h2 {
+    margin-bottom: 10px;
+    color: #3b82f6;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
 #alerts {
-    background: white;
+    background: #1f2937;
     padding: 15px;
     border-radius: 10px;
     margin: 20px 0;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+}
+
+#alerts h2 {
+    margin-bottom: 10px;
+    color: #3b82f6;
 }
 
 #alerts-list {
@@ -94,51 +118,51 @@ header .subtitle {
 
 .alert-item {
     padding: 8px;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #374151;
     font-size: 0.9rem;
 }
 
-/* Table */
 .table-section {
-    background: white;
+    background: #1f2937;
     padding: 15px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
 }
 
 .table-section h2 {
     margin-bottom: 10px;
-    color: #0077b6;
+    color: #3b82f6;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 10px;
+    color: #e5e7eb;
 }
 
 thead {
-    background: #0077b6;
+    background: #2563eb;
     color: white;
 }
 
 th, td {
     padding: 10px;
-    border: 1px solid #ddd;
+    border: 1px solid #374151;
     text-align: center;
     font-size: 0.95rem;
 }
 
 tr:nth-child(even) {
-    background: #f9f9f9;
+    background: #111827;
 }
 
 .safe {
-    color: green;
+    color: #10b981;
     font-weight: bold;
 }
 
 .unsafe {
-    color: red;
+    color: #ef4444;
     font-weight: bold;
 }
