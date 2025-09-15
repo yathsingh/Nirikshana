@@ -1,24 +1,26 @@
-from datetime import datetime, timedelta
 import time
-from backend.db import SessionLocal, init_db, WaterData, Alert
-from seed import generate_record
+from datetime import datetime
 
-def simulate_live(interval_seconds: int = 10):
+from backend.db import SessionLocal
+from seed import generate_record  
+
+def simulate_live(interval_seconds: int = 5):
+    """Continuously insert live water data every N seconds."""
     db = SessionLocal()
-    init_db()
+    try:
+        while True:
+            now = datetime.utcnow()
+            water, alert = generate_record(now)
+            db.add(water)
+            if alert:
+                db.add(alert)
+            db.commit()
+            print(f"Inserted live record at {now}")
+            time.sleep(interval_seconds)
+    except KeyboardInterrupt:
+        print("Stopped live simulation.")
+    finally:
+        db.close()
 
-    last_record = db.query(WaterData).order_by(WaterData.timestamp.desc()).first()
-    if last_record:
-        timestamp = last_record.timestamp
-    else:
-        timestamp = datetime.utcnow()
-
-    while True:
-        timestamp += timedelta(seconds=interval_seconds)  
-        water, alert = generate_record(timestamp)
-        db.add(water)
-        if alert:
-            db.add(alert)
-        db.commit()
-        print(f"Inserted live record at {timestamp}")
-        time.sleep(interval_seconds)
+if __name__ == "__main__":
+    simulate_live(interval_seconds=10)

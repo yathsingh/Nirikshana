@@ -115,6 +115,14 @@ header .logo {
     height: 100% !important;
 }
 
+#predictionChart {
+    max-width: 275px;
+    max-height: 275px;
+    margin: 0 auto;
+    display: block;
+}
+
+
 #alerts {
     background: #1f2937;
     padding: 15px;

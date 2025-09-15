@@ -22,6 +22,10 @@ templates = Jinja2Templates(directory=TEMPLATES_DIR)
 app = FastAPI(title="Nirikshana Water Monitoring API")
 app.mount("/static", StaticFiles(directory=STATIC_DIR), name="static")
 
+@app.on_event("startup")
+def start_simulator():
+    thread = threading.Thread(target=simulate_live, args=(10,), daemon=True)
+    thread.start()
 
 def get_db():
     db = SessionLocal()
@@ -39,12 +43,6 @@ class WaterInput(BaseModel):
     tds: float
     turbidity: float
     flow_rate: float
-
-
-@app.get("/", response_class=JSONResponse)
-def read_root():
-    return {"message": "Nirikshana API active"}
-
 
 @app.get("/dashboard", response_class=HTMLResponse)
 async def dashboard(request: Request):
