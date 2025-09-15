@@ -21,11 +21,9 @@ Prototype Brain: Arduino UNO
 
 *Rough Sketches:*
 
-<p>
-  <img src="images/hw_rough_sketch.png" alt="Nirikshana hardware sketch" height="300" width="auto" />
-</p>
-<p>
-  <img src="images/hw_rough_sketch.png" alt="Nirikshana distribution sketch" height="300" width="auto" />
+<p style="display: flex; gap: 20px; justify-content: center;">
+  <img src="images/hw_rough_sketch.jpeg" alt="Nirikshana hardware sketch" height="300" style="width: auto;" />
+  <img src="images/unit_dist_sketch.jpeg" alt="Nirikshana distribution sketch" height="300" style="width: auto;" />
 </p>
 
 <br>
