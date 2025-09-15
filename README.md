@@ -42,11 +42,11 @@ Prototype Brain: Arduino UNO
 
 **Machine Learning Model**
 
-Currently Used: Random Forest with 'max_depth': None, 'min_samples_split': 2, 'n_estimators': 500 (Available in *models* folder)
+Currently Used: Random Forest with 'max_depth': None, 'min_samples_split': 2, 'n_estimators': 500 (Model .pkl file is available at *backend/models*)
 
 Planned: XGBoost -> Custom deep learning pipeline
 
-Originally trained in Google Colab, then downloaded using joblib.
+Originally trained synthetic data in Google Colab, then downloaded using joblib (Synthetic data .csv file is available at *backend/models*)
 
 *Model performance metrics:*
 
@@ -60,7 +60,8 @@ Originally trained in Google Colab, then downloaded using joblib.
 **Backend**
 
 FastAPI enables creation of multiple API endpoints, interacting with an SQLLite database to ensure a simple yet effective prototype design.
-seed.py generates mock historic data, while simulate_live inputs data live at intervals to simulate the real pipeline
+
+*seed.py* generates mock historic data, while *simulate_live.py* inputs live data at intervals to simulate the real pipeline.
 
 <br>
 
