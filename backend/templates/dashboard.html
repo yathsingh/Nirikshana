@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Nirikshana Dashboard</title>
     <link rel="stylesheet" type="text/css" href="/static/style.css">
+    <link rel="icon" href="/images/Nirikshana.png" type="image/x-icon" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -12,23 +13,34 @@
         <p class="subtitle">Real-time river water quality monitoring</p>
     </header>
 
-    <section id="alerts">
-        <div id="alert-box" class="hidden">Warning: Unsafe water detected!</div>
+    <section id="summary-cards">
+        <div class="card" id="total-records">0<br><span>Total Records</span></div>
+        <div class="card alert-card" id="total-alerts">0<br><span>Alerts</span></div>
+        <div class="card" id="river-name">Ganga<br><span>Monitored River</span></div>
     </section>
 
-    <section class="charts">
-        <div class="card">
+    <section id="charts">
+        <div class="chart-box">
             <h2>pH Levels</h2>
             <canvas id="phChart"></canvas>
         </div>
-        <div class="card">
-            <h2>Turbidity (NTU)</h2>
+        <div class="chart-box">
+            <h2>TDS Levels</h2>
+            <canvas id="tdsChart"></canvas>
+        </div>
+        <div class="chart-box">
+            <h2>Turbidity</h2>
             <canvas id="turbidityChart"></canvas>
         </div>
-        <div class="card">
-            <h2>Safe vs Unsafe</h2>
+        <div class="chart-box">
+            <h2>Prediction Status</h2>
             <canvas id="predictionChart"></canvas>
         </div>
+    </section>
+
+    <section id="alerts">
+        <h2>Recent Alerts</h2>
+        <div id="alerts-list"></div>
     </section>
 
     <section class="table-section">
@@ -51,7 +63,7 @@
     </section>
 
     <script>
-        let phChart, turbidityChart, predictionChart;
+        let phChart, tdsChart, turbidityChart, predictionChart;
 
         async function fetchData() {
             const res = await fetch("/data");
@@ -59,16 +71,14 @@
 
             const labels = waterData.map(d => new Date(d.timestamp).toLocaleTimeString());
             const phValues = waterData.map(d => d.ph);
+            const tdsValues = waterData.map(d => d.tds);
             const turbidityValues = waterData.map(d => d.turbidity);
             const predictions = waterData.map(d => d.prediction);
 
             if (!phChart) {
                 phChart = new Chart(document.getElementById("phChart"), {
                     type: "line",
-                    data: {
-                        labels: labels,
-                        datasets: [{ label: "pH", data: phValues, borderColor: "blue", fill: false }]
-                    }
+                    data: { labels, datasets: [{ label: "pH", data: phValues, borderColor: "blue", fill: false }] }
                 });
             } else {
                 phChart.data.labels = labels;
@@ -76,13 +86,21 @@
                 phChart.update();
             }
 
+            if (!tdsChart) {
+                tdsChart = new Chart(document.getElementById("tdsChart"), {
+                    type: "line",
+                    data: { labels, datasets: [{ label: "TDS", data: tdsValues, borderColor: "purple", fill: false }] }
+                });
+            } else {
+                tdsChart.data.labels = labels;
+                tdsChart.data.datasets[0].data = tdsValues;
+                tdsChart.update();
+            }
+
             if (!turbidityChart) {
                 turbidityChart = new Chart(document.getElementById("turbidityChart"), {
                     type: "line",
-                    data: {
-                        labels: labels,
-                        datasets: [{ label: "Turbidity", data: turbidityValues, borderColor: "orange", fill: false }]
-                    }
+                    data: { labels, datasets: [{ label: "Turbidity", data: turbidityValues, borderColor: "orange", fill: false }] }
                 });
             } else {
                 turbidityChart.data.labels = labels;
@@ -92,7 +110,6 @@
 
             const safeCount = predictions.filter(p => p === "safe").length;
             const unsafeCount = predictions.filter(p => p === "unsafe").length;
-
             if (!predictionChart) {
                 predictionChart = new Chart(document.getElementById("predictionChart"), {
                     type: "pie",
@@ -111,25 +128,29 @@
             (waterData.slice(-10).reverse()).forEach(d => {
                 const row = `
                     <tr>
-                        <td>${d.timestamp}</td>
+                        <td>${new Date(d.timestamp).toLocaleString()}</td>
                         <td>${d.river || ""}</td>
                         <td>${d.location || ""}</td>
-                        <td>${(d.ph !== null && d.ph !== undefined) ? d.ph.toFixed(2) : ""}</td>
+                        <td>${d.ph?.toFixed(2) ?? ""}</td>
                         <td>${d.tds ?? ""}</td>
-                        <td>${(d.turbidity !== null && d.turbidity !== undefined) ? d.turbidity.toFixed(1) : ""}</td>
-                        <td>${(d.flow_rate !== null && d.flow_rate !== undefined) ? d.flow_rate.toFixed(1) : ""}</td>
+                        <td>${d.turbidity?.toFixed(1) ?? ""}</td>
+                        <td>${d.flow_rate?.toFixed(1) ?? ""}</td>
                         <td class="${d.prediction === 'safe' ? 'safe' : 'unsafe'}">${d.prediction}</td>
                     </tr>
                 `;
                 tableBody.innerHTML += row;
             });
 
-            const alertBox = document.getElementById("alert-box");
-            if (predictions.includes("unsafe")) {
-                alertBox.classList.remove("hidden");
-            } else {
-                alertBox.classList.add("hidden");
-            }
+            const alertsList = document.getElementById("alerts-list");
+            alertsList.innerHTML = waterData
+                .filter(d => d.prediction === "unsafe")
+                .slice(-5)
+                .map(d => `
+                    <div class="alert-item">
+                        ⚠️ Unsafe water at ${d.location} (${d.river})<br>
+                        <small>${new Date(d.timestamp).toLocaleString()}</small>
+                    </div>
+                `).join("");
         }
 
         setInterval(fetchData, 5000);
