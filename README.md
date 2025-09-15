@@ -3,6 +3,7 @@
 TO RUN, OPEN TERMINAL AND ENTER: 
 1. python simulate_live.py
 2. uvicorn app:app --reload
+3. add /dashboard at the end of the link
 
 Nirikshana utilises a robust hardware device to collect and wirelessly transmit water-quality data using numerous sensors (pH, turbidity, tds, water flow). 
 The data is then sent to the backend where it is passed through an ML pipeline to predict water safety, and the finalised data is sent to an interative dashboard 
@@ -28,6 +29,13 @@ Prototype Brain: Arduino UNO
 <p style="display: flex; gap: 40px; justify-content: center;">
   <img src="images/hw_rough_sketch.jpeg" alt="Nirikshana hardware sketch" height="300" style="width: auto;" />
   <img src="images/unit_dist_sketch.jpeg" alt="Nirikshana distribution sketch" height="300" style="width: auto;" />
+</p>
+
+*Hardware mock-up:*
+
+<p style="display: flex; gap: 40px; justify-content: center;">
+  <img src="images/hw_proto_rough.jpeg" alt="hw proto" height="300" style="width: auto;" />
+  <img src="images/unit_proto_rough_inside.jpeg" alt="hw proto inside" height="300" style="width: auto;" />
 </p>
 
 <br>
@@ -59,3 +67,7 @@ FastAPI enables creation of multiple API endpoints, interacting with an SQLLite 
 
 Utilises HTML, CSS, Javascript, Chart.js to create an interactive viewer experience
 
+<p style="display: flex; gap: 40px; justify-content: center;">
+  <img src="images/nf_dash_1.png" alt="cf" height="300" style="width: auto;" />
+  <img src="images/nf_dash_3.png" alt="imp" height="300" style="width: auto;" />
+</p>
