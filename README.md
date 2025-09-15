@@ -4,8 +4,9 @@ Nirikshana utilises a robust hardware device to collect and wirelessly transmit 
 The data is then sent to the backend where it is passed through an ML pipeline to predict water safety, and the finalised data is sent to an interative dashboard 
 where one can see alerts, statistics and recently collected data to get an extensive overview. 
 
-![Nirikshana logo](images/Nirikshana.png)
-
+<p align="center">
+  <img src="images/Nirikshana.png" alt="Nirikshana logo" height="300" width="auto" />
+</p>
 
 **Hardware**
 
