@@ -1,8 +1,4 @@
-Nirikshana End to End Water Monitoring System
-https://www.canva.com/design/DAGzCcGTNUc/xu7sGJ_ltzCS1h2fYVg9bg/view?utm_content=DAGzCcGTNUc&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h83571a587b
-
-  <img height="50" src="https://user-images.githubusercontent.com/46517096/166974368-9798f39f-1f46-499c-b14e-81f0a3f83a06.png"/>
-
+**Nirikshana End to End Water Monitoring System**
 
 Nirikshana utilises a robust hardware device to collect and wirelessly transmit water-quality data using numerous sensors (pH, turbidity, tds, water flow). 
 The data is then sent to the backend where it is passed through an ML pipeline to predict water safety, and the finalised data is sent to an interative dashboard 
