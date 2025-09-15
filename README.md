@@ -8,6 +8,8 @@ where one can see alerts, statistics and recently collected data to get an exten
   <img src="images/Nirikshana.png" alt="Nirikshana logo" height="300" width="auto" />
 </p>
 
+<br>
+
 **Hardware**
 
 Shell material: Plant-based bioplastic (WIP)
@@ -18,6 +20,7 @@ Sensors: pH, Turbidity, TDS, Water flow
 
 Prototype Brain: Arduino UNO
 
+<br>
 
 **Machine Learning Model**
 
