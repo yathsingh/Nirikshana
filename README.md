@@ -2,7 +2,7 @@
 
 **MVP Link:** https://nirikshana-nfls.onrender.com/dashboard
 
-TO RUN, OPEN TERMINAL AND ENTER: 
+TO RUN YOURSELF, OPEN TERMINAL AND ENTER: 
 
 1. uvicorn app:app --reload
 2. add /dashboard at the end of the link
