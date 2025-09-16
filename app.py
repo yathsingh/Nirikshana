@@ -7,9 +7,11 @@ from sqlalchemy.orm import Session
 from sqlalchemy import func
 from pydantic import BaseModel
 from typing import Any, Dict
+import threading
 
 from backend.db import SessionLocal, init_db, WaterData, Alert  
 from backend.predict import predict_water_quality
+from backend.simulator import simulate_live
 
 init_db()
 
