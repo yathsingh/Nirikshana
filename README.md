@@ -1,5 +1,7 @@
 **Nirikshana End to End Water Monitoring System**
 
+**MVP Link:** https://nirikshana-nfls.onrender.com/dashboard
+
 TO RUN, OPEN TERMINAL AND ENTER: 
 
 1. uvicorn app:app --reload
