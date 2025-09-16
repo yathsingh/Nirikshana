@@ -36,7 +36,6 @@ def get_db():
     finally:
         db.close()
 
-
 class WaterInput(BaseModel):
     device_id: str | None = None
     river: str
