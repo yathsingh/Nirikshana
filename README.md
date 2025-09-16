@@ -1,9 +1,9 @@
 **Nirikshana End to End Water Monitoring System**
 
 TO RUN, OPEN TERMINAL AND ENTER: 
-1. python simulate_live.py
-2. uvicorn app:app --reload
-3. add /dashboard at the end of the link
+
+1. uvicorn app:app --reload
+2. add /dashboard at the end of the link
 
 Nirikshana utilises a robust hardware device to collect and wirelessly transmit water-quality data using numerous sensors (pH, turbidity, tds, water flow). 
 The data is then sent to the backend where it is passed through an ML pipeline to predict water safety, and the finalised data is sent to an interative dashboard 
