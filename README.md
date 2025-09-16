@@ -1,7 +1,6 @@
 **Nirikshana End to End Water Monitoring System**
 
 TO RUN, OPEN TERMINAL AND ENTER: 
-1. python simulate_live.py
 2. uvicorn app:app --reload
 3. add /dashboard at the end of the link
 
