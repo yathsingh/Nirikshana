@@ -11,7 +11,7 @@ import threading
 
 from backend.db import SessionLocal, init_db, WaterData, Alert  
 from backend.predict import predict_water_quality
-from backend.simulate_live import simulate_live
+from simulate_live import simulate_live
 
 init_db()
 
